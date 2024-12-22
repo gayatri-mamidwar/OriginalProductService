@@ -1,14 +1,9 @@
 package dev.umang.productserviceexciteddec24.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.Date;
 
 @Entity
 public class Product extends BaseModel{
@@ -56,6 +51,7 @@ public class Product extends BaseModel{
     private String description;
     private double price;
     @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JsonBackReference // Prevent serialization of the back-reference
     private Category category;
     private String imageUrl;
 

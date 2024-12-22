@@ -1,22 +1,17 @@
 package dev.umang.productserviceexciteddec24.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.Date;
 import java.util.List;
-
 
 @Entity
 public class Category extends BaseModel{
     private String title;
 
-    //duplicate relation(already mentioned in product class)
+    //duplicate relation(already mentioned in product class) we are showing with the help of 'mappedBy' param
+    // CascadeType.REMOVE -> if any category is deleted then remove all products associated with that category
     @OneToMany(mappedBy = "category", cascade = {CascadeType.REMOVE})
     private List<Product> products; //electronics
 

@@ -1,38 +1,51 @@
 package dev.umang.productserviceexciteddec24.controllers;
 
+import dev.umang.productserviceexciteddec24.dtos.CreateProductRequestDto;
 import dev.umang.productserviceexciteddec24.models.Product;
 import dev.umang.productserviceexciteddec24.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class ProductController {
     private ProductService productService;
-    //Contructor injection
 
+    //Contructor injection
+    /* IF only 1 service class is there, no need of @Qualifier annotation
+    public ProductController(ProductService productService){
+        this.productService = productService;
+    }
+     */
+
+    // If more than 1 service class is there, then to know spring which obj to use, @Qualifier is required
     public ProductController(@Qualifier("selfProductService") ProductService productService){
         this.productService = productService;
     }
-    //Dependency injection
-    //3apis
-
-    //getProductDetails
-    //products/3
 
     @GetMapping("/products/{id}")
-    Product getSingleProduct(@PathVariable("id") long id){
+    public Product getSingleProduct(@PathVariable("id") long id){
         return productService.getSingleProduct(id);
     }
 
     @GetMapping("/products")
-    List<Product> getAllProducts(){
+    public List<Product> getAllProducts(){
         return productService.getAllProducts();
+    }
 
+    /* DO NOT SEND direct DTO from controller to service. always extract info from DTO in controller then send that info
+    to service. This is just for validation logic purpose at controller side. business logic will be in service class
+    public Product createProduct(@RequestBody CreateProductRequestDto createProductRequestDto){
+        return productService.createProduct(createProductRequestDto);
+    }
+     */
+
+    //Product obj is a obj from db. which is already created
+    @PostMapping("/products")
+    public Product createProduct(@RequestBody CreateProductRequestDto createProductRequestDto){
+        return productService.createProduct(createProductRequestDto.getTitle(), createProductRequestDto.getDescription(),
+                createProductRequestDto.getImage(), createProductRequestDto.getCategory(), createProductRequestDto.getPrice());
     }
 
     //productService.createProduct

@@ -1,28 +1,13 @@
 package dev.umang.productserviceexciteddec24.dtos;
 
-import dev.umang.productserviceexciteddec24.models.Category;
-import dev.umang.productserviceexciteddec24.models.Product;
 
-public class FakeStoreProductDTO {
+public class CreateProductRequestDto {
+
     private String title;
     private String description;
-    private double price;
     private String image;
     private String category;
-
-    public Product toProduct(){
-        Product product = new Product();
-        product.setDescription(description);
-        product.setTitle(title);
-        product.setPrice(price);
-        product.setImageUrl(image);
-
-        Category category1 = new Category();
-        category1.setTitle(category);
-        product.setCategory(category1);
-
-        return product;
-    }
+    private double price;
 
     public String getTitle() {
         return title;
@@ -40,14 +25,6 @@ public class FakeStoreProductDTO {
         this.description = description;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getImage() {
         return image;
     }
@@ -62,5 +39,13 @@ public class FakeStoreProductDTO {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
