@@ -20,17 +20,19 @@ public class SelfProductService implements ProductService{
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
     }
+
+    //get single product from product table
     @Override
     public Product getSingleProduct(long id) {
          Product product = productRepository.findById(id);
          return product;
     }
 
+    //get all products from product table
     @Override
     public List<Product> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products;
-        //get all products from product table
     }
 
     /* WHen sending direct DTO-

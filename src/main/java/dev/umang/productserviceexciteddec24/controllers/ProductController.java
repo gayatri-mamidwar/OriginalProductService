@@ -1,6 +1,7 @@
 package dev.umang.productserviceexciteddec24.controllers;
 
 import dev.umang.productserviceexciteddec24.dtos.CreateProductRequestDto;
+import dev.umang.productserviceexciteddec24.models.Category;
 import dev.umang.productserviceexciteddec24.models.Product;
 import dev.umang.productserviceexciteddec24.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
