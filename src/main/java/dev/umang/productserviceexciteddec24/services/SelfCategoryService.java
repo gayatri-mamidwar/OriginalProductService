@@ -17,6 +17,7 @@ public class SelfCategoryService implements CategoryService{
         this.categoryRepository = categoryRepository;
     }
 
+
     @Override
     public List<String> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
@@ -34,7 +35,7 @@ public class SelfCategoryService implements CategoryService{
         return categoryRepository.findProductsByTitle(title);
     }
 
-    /*
+    /* get all category by returning Category object
     @Override
     public List<Category> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();

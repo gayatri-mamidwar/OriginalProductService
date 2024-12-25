@@ -20,19 +20,20 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    /*
+    /* GET ALL CATEGORIES with PRODUCT details
     @GetMapping("/products/categories")
     public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
     }
-
      */
 
+    // GET list of products by category title
     @GetMapping("/products/category/{title}")
     public List<Product> getSingleCategory(@PathVariable("title") String title){
         return categoryService.getAllProductsByTitle(title);
     }
 
+    // Get list of categories as List of string
     @GetMapping("/products/categories")
     public List<String> getAllCategories(){
         return categoryService.getAllCategories();

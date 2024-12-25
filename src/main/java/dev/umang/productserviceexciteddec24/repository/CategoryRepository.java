@@ -14,13 +14,20 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     Category findByTitle(String title);
 
+    // HQL/custom query
     @Query("SELECT p FROM Product p WHERE p.category.title = :title")
     List<Product> findProductsByTitle(@Param("title") String title);
 
-//    @Override
+    // declared queries
+    //@Override
     List<Category> findAll();
+
 }
 
 /* wrong way we need custom query-
 List<Product> findProductsByTitle(String title);
+
+
+JPA selects all the columns & if want to select only some columns then write HQL query.
+Projections are nothing but interface.
  */

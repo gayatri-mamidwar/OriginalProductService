@@ -1,6 +1,7 @@
 package dev.umang.productserviceexciteddec24.controllers;
 
 import dev.umang.productserviceexciteddec24.dtos.CreateProductRequestDto;
+import dev.umang.productserviceexciteddec24.exceptions.ProductNotFoundException;
 import dev.umang.productserviceexciteddec24.models.Category;
 import dev.umang.productserviceexciteddec24.models.Product;
 import dev.umang.productserviceexciteddec24.services.ProductService;
@@ -26,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public Product getSingleProduct(@PathVariable("id") long id){
+    public Product getSingleProduct(@PathVariable("id") long id) throws ProductNotFoundException {
         return productService.getSingleProduct(id);
     }
 
@@ -43,6 +44,7 @@ public class ProductController {
      */
 
     //Product obj is a obj from db. which is already created
+
     @PostMapping("/products")
     public Product createProduct(@RequestBody CreateProductRequestDto createProductRequestDto){
         return productService.createProduct(createProductRequestDto.getTitle(), createProductRequestDto.getDescription(),

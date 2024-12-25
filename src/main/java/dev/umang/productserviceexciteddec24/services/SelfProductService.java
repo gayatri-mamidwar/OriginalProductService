@@ -2,6 +2,7 @@ package dev.umang.productserviceexciteddec24.services;
 
 import dev.umang.productserviceexciteddec24.dtos.CreateProductRequestDto;
 import dev.umang.productserviceexciteddec24.dtos.SelfResponseDto;
+import dev.umang.productserviceexciteddec24.exceptions.ProductNotFoundException;
 import dev.umang.productserviceexciteddec24.models.Category;
 import dev.umang.productserviceexciteddec24.models.Product;
 import dev.umang.productserviceexciteddec24.repository.CategoryRepository;
@@ -21,11 +22,18 @@ public class SelfProductService implements ProductService{
         this.categoryRepository = categoryRepository;
     }
 
-    //get single product from product table
+
     @Override
-    public Product getSingleProduct(long id) {
-         Product product = productRepository.findById(id);
-         return product;
+    public Product getSingleProduct(long id) throws ProductNotFoundException{
+
+        Optional<Product> optionalproduct = productRepository.findById(id);
+
+        if(optionalproduct.isEmpty()){
+            //product with given id doesn't exist
+            throw new ProductNotFoundException("Product with given id doesn't exist");
+        }
+
+        return optionalproduct.get();   //Optional cls get() either return null(if not present), product(if present)
     }
 
     //get all products from product table
@@ -34,6 +42,8 @@ public class SelfProductService implements ProductService{
         List<Product> products = productRepository.findAll();
         return products;
     }
+
+
 
     /* WHen sending direct DTO-
     @Override

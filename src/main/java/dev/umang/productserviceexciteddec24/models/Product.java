@@ -50,8 +50,9 @@ public class Product extends BaseModel{
     private String title;
     private String description;
     private double price;
+
     @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JsonBackReference // Prevent serialization of the back-reference
+//    @JsonBackReference // Prevent serialization of the back-reference
     private Category category;
     private String imageUrl;
 
