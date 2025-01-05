@@ -43,6 +43,17 @@ public class SelfProductService implements ProductService{
         return products;
     }
 
+    @Override
+    public void deleteProduct(long id) throws ProductNotFoundException{
+        Optional<Product> optionalProduct = productRepository.findById(id);
+
+        if(optionalProduct.isEmpty()){
+            throw new ProductNotFoundException("Product with given id doesn't exist");
+        }
+
+        productRepository.deleteById(id);
+    }
+
 
 
     /* WHen sending direct DTO-

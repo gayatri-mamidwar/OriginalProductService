@@ -6,6 +6,7 @@ import dev.umang.productserviceexciteddec24.models.Category;
 import dev.umang.productserviceexciteddec24.models.Product;
 import dev.umang.productserviceexciteddec24.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +50,12 @@ public class ProductController {
     public Product createProduct(@RequestBody CreateProductRequestDto createProductRequestDto){
         return productService.createProduct(createProductRequestDto.getTitle(), createProductRequestDto.getDescription(),
                 createProductRequestDto.getImage(), createProductRequestDto.getCategory(), createProductRequestDto.getPrice());
+    }
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("id") long id) throws ProductNotFoundException{
+        productService.deleteProduct(id);
+        return ResponseEntity.ok("Product with id = " + id + " deleted successfully");
     }
 
     //productService.createProduct

@@ -13,6 +13,7 @@ public interface ProductService {
     Product getSingleProduct(long id) throws ProductNotFoundException;
 
     List<Product> getAllProducts();
+    void deleteProduct(long id) throws  ProductNotFoundException;
 
 //    sending direct DTO from controller to service is not a good practice. like below
 //    Product createProduct(CreateProductRequestDto createProductRequestDto);

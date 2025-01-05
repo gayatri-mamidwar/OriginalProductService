@@ -2,6 +2,7 @@ package dev.umang.productserviceexciteddec24.services;
 
 import dev.umang.productserviceexciteddec24.dtos.CreateProductRequestDto;
 import dev.umang.productserviceexciteddec24.dtos.FakeStoreProductDTO;
+import dev.umang.productserviceexciteddec24.exceptions.ProductNotFoundException;
 import dev.umang.productserviceexciteddec24.models.Product;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,11 @@ public class FakeStoreProductService implements ProductService{
         }
 
         return products;
+    }
+
+    @Override
+    public void deleteProduct(long id) throws ProductNotFoundException {
+
     }
 
 
