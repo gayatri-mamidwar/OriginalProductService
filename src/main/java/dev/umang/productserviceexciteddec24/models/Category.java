@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Category extends BaseModel{
 
     //duplicate relation(already mentioned in product class) we are showing with the help of 'mappedBy' param
     // CascadeType.REMOVE -> if any category is deleted then remove all products associated with that category
-    @OneToMany(mappedBy = "category", cascade = {CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Product> products; //electronics
 

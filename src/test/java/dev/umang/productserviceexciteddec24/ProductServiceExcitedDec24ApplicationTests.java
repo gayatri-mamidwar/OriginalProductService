@@ -1,13 +1,16 @@
 package dev.umang.productserviceexciteddec24;
 
+import dev.umang.productserviceexciteddec24.models.Category;
 import dev.umang.productserviceexciteddec24.models.Product;
 import dev.umang.productserviceexciteddec24.projections.ProductWithIdAndPriceProjection;
+import dev.umang.productserviceexciteddec24.repository.CategoryRepository;
 import dev.umang.productserviceexciteddec24.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 class ProductServiceExcitedDec24ApplicationTests {
@@ -15,6 +18,8 @@ class ProductServiceExcitedDec24ApplicationTests {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Test
     void contextLoads() {
@@ -40,4 +45,13 @@ class ProductServiceExcitedDec24ApplicationTests {
 //        List<ProductWithIdAndPriceProjection> projections = productRepository.getIdAndPricesOfAllProductsWithGivenTitle("jewelery");
 //        System.out.println(projections);
 //    }
+
+    /*
+    @Test
+    void testEarlyAndLazyLoading(){
+//        Optional<Product> product = productRepository.findById(2L);       //Eager binding showing category details also
+        Optional<Category> product = categoryRepository.findById(1L);       //lazy binding not showing list of product details. make it Eager binding using (fetch = fetchtype.Eager) in model cls
+        System.out.println(product);
+    }
+     */
 }
