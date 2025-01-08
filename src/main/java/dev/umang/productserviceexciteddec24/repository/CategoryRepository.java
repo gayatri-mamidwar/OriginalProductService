@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
+    //JPA methods => Declared queries
     Category findByTitle(String title);
 
     // HQL/custom query
