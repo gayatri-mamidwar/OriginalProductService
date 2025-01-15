@@ -4,6 +4,7 @@ import dev.umang.productserviceexciteddec24.dtos.CreateProductRequestDto;
 import dev.umang.productserviceexciteddec24.dtos.FakeStoreProductDTO;
 import dev.umang.productserviceexciteddec24.exceptions.ProductNotFoundException;
 import dev.umang.productserviceexciteddec24.models.Product;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -43,6 +44,11 @@ public class FakeStoreProductService implements ProductService{
         }
 
         return products;
+    }
+
+    @Override
+    public Page<Product> getPaginatedProducts(int pageNo, int pageSize) {
+        return null;
     }
 
     @Override

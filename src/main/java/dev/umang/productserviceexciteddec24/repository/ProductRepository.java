@@ -2,6 +2,8 @@ package dev.umang.productserviceexciteddec24.repository;
 
 import dev.umang.productserviceexciteddec24.models.Product;
 import dev.umang.productserviceexciteddec24.projections.ProductWithIdAndPriceProjection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +16,15 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Override
     List<Product> findAll();
+
+    /* pagination- by JPA repository
+     //from which limit and which offset you need to fetch?
+    //pageNo = 20, pageSize = 25
+    //pageNo starts from 0 20*25 = 500 retrieved earlier
+    //20th page will show 501th to 526th products
+     */
+    @Override
+    Page<Product> findAll(Pageable pageable); //pageNo, pageSize - data will given from the fronted
 
     Product save(Product p);
 
