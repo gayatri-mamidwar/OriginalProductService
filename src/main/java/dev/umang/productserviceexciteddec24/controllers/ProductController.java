@@ -48,21 +48,23 @@ public class ProductController {
 
     /* using Page<Product> as return type
 
-     */
     @GetMapping("/products/paginated")
     //accept filter params which you're going to provide to the service
+
     public Page<Product> getPaginatedProducts(@RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize){
         //should I return page of prod or list of prod to the frontend??
         //please explore how to convert Page<T> to List<T> - HW
         return productService.getPaginatedProducts(pageNo, pageSize);
     }
+     */
 
-//    @GetMapping("/products/paginated")
-//    public List<Product> getPaginatedProducts(@RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize){
-//        Page<Product> pageProducts = productService.getPaginatedProducts(pageNo, pageSize);
-//        List<Product> products = pageProducts.getContent();
-//        return products;
-//    }
+    //using List<Product> as return type
+    @GetMapping("/products/paginated")
+    public List<Product> getPaginatedProducts(@RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize){
+        Page<Product> pageProducts = productService.getPaginatedProducts(pageNo, pageSize);
+        List<Product> products = pageProducts.getContent();
+        return products;
+    }
 
     //Product obj is a obj from db. which is already created
 
